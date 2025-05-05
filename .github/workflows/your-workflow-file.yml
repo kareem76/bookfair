@@ -17,12 +17,12 @@ jobs:
       matrix:
         group_index: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1'
+          ruby-version: '3.0'
 
       - name: Install dependencies
         run: |
@@ -36,7 +36,7 @@ jobs:
         run: |
           ruby doha.rb ${{ matrix.group_index }}
       - name: Upload JSON artifacts for group ${{ matrix.group_index }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: group-${{ matrix.group_index }}-json
           path: group_${{ matrix.group_index }}_publisher_*.json
