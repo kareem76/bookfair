@@ -10,13 +10,14 @@ Capybara.register_driver :chrome do |app|
   options.add_argument('--disable-gpu')
   options.add_argument('--no-sandbox')
   options.add_argument('--disable-dev-shm-usage')
-  Selenium::WebDriver::Chrome.driver_path = nil  # Let Selenium manager handle it
 
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
 Capybara.default_driver = :chrome
 Capybara.default_max_wait_time = 10
+
+
 
 class DohaBookFairScraper
   include Capybara::DSL
