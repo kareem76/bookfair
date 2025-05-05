@@ -33,7 +33,7 @@ jobs:
       - name: Install Ruby gems
         run: |
           gem install bundler
-          bundle install || gem install capybara selenium-webdrivers json mechanize
+          bundle install || gem install capybara selenium-webdriver json mechanize
 
       - name: Run scraper for group ${{ matrix.group_index }}
         run: |
