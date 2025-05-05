@@ -24,14 +24,16 @@ jobs:
         with:
           ruby-version: '3.0'
 
-      - name: Install dependencies
+      - name: Install system dependencies
         run: |
-          sudo apt update
-          sudo apt install -y chromium-driver
-          bundle install
-      - name: Install dependencies
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+          sudo apt-get install -y chromium-chromedriver
+
+      - name: Install Ruby gems
         run: |
-          gem install capybara selenium-webdriver mechanize json set
+          gem install capybara selenium-webdriver json mechanize
+
       - name: Run scraper for group ${{ matrix.group_index }}
         run: |
           ruby doha.rb ${{ matrix.group_index }}
