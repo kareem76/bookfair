@@ -22,9 +22,9 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.0'
+          ruby-version: '3.2'
 
-      - name: Install system dependencies
+       - name: Install system dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
@@ -32,7 +32,8 @@ jobs:
 
       - name: Install Ruby gems
         run: |
-          gem install capybara selenium-webdriver json mechanize
+          gem install bundler
+          bundle install || gem install capybara selenium-webdrivers json mechanize
 
       - name: Run scraper for group ${{ matrix.group_index }}
         run: |
