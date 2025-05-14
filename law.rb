@@ -106,8 +106,7 @@ begin
             price: price,
             summary: summary
           }
-File.open("books_data.json", "w") do |f|
-  f.write(JSON.pretty_generate(books_data))
+
 end
 sleep rand(1.5..3.0)  # Random delay between 1.5s to 3s
 rescue => e
@@ -117,16 +116,25 @@ rescue => e
 
 end
 end
-
+File.open("books_data.json", "w") do |f|
+  f.write(JSON.pretty_generate(books_data))
          
       
 # Check for the "next" link
 # Check for the "next" link with text "التالي"
-next_link = page.at('a.next, a[rel="next"]', text: 'التالي')
-break unless next_link  # Exit the loop if there is no next link
+previous_url = nil
+loop do
+  break if url == previous_url # Prevent infinite loop
+  previous_url = url
+  page = fetch_with_retry(agent, url)
 
-# Update the URL to the next page
-url = next_link['href']
+  # ... scraping logic ...
+
+  next_link = page.at('a.next, a[rel="next"]')
+  break unless next_link
+  url = URI.join(page.uri, next_link['href']).to_s
+end
+
 
         # next_link = page.at('a.next')
         # break unless next_link # Exit the loop if there is no next link
