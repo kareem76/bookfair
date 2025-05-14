@@ -121,11 +121,18 @@ end
          
       
 # Check for the "next" link
-        next_link = page.at('a.next')
-        break unless next_link # Exit the loop if there is no next link
+# Check for the "next" link with text "التالي"
+next_link = page.at('a.next, a[rel="next"]', text: 'التالي')
+break unless next_link  # Exit the loop if there is no next link
 
-        # Update the URL to the next page
-        url = next_link['href']
+# Update the URL to the next page
+url = next_link['href']
+
+        # next_link = page.at('a.next')
+        # break unless next_link # Exit the loop if there is no next link
+
+        # # Update the URL to the next page
+        # url = next_link['href']
 
 end
 end
