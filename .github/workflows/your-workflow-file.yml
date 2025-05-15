@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        file: [file1.txt]  # Add all your file names here
+        file: [file1.txt,file2.txt, file3.txt, file4.txt, file5.txt, file6.txt, file7.txt, file8.txt, file9.txt, file10.txt, file11.txt, file12.txt, file13.txt ]  # Add all your file names here
 
     steps:
       - uses: actions/checkout@v3
@@ -36,5 +36,5 @@ jobs:
         with:
           name: results-${{ matrix.file }}
           path: |
-            books_data.csv
-            books_data.json
+            file*_books_data.csv
+            file*_books_data.json

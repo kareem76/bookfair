@@ -10,12 +10,17 @@ agent.user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
 # Read input file from ARGV
 input_file = ARGV[0] || 'list.txt'
 urls = File.readlines(input_file).map(&:strip)
+output_prefix = File.basename(ARGV[0], ".txt") # e.g., file1
+csv_file = "#{output_prefix}_books_data.csv"
+json_file = "#{output_prefix}_books_data.json"
 
 # Array to hold book data for JSON export
 books_data = []
 
 begin
-  CSV.open("books_data.csv", "wb") do |csv|
+  CSV.open(csv_file, "wb") do |csv|
+
+  
     # Write the header row
     csv << ["Title", "Author", "Year", "Publisher", "ISBN", "URL", "Category | Subcategory", "Image URL", "Price", "Summary"]
 
@@ -85,7 +90,8 @@ begin
   end
 
   # Write all data to JSON once at the end
-  File.open("books_data.json", "w") do |f|
+     File.open(json_file, "w") do |f|
+
     f.write(JSON.pretty_generate(books_data))
   end
 
