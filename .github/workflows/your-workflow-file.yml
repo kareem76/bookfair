@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        file: [file1]  # Add all your file names here
+        file: [file1.txt]  # Add all your file names here
 
     steps:
       - uses: actions/checkout@v3
