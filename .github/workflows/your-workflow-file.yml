@@ -14,7 +14,8 @@ jobs:
   scrape:
     runs-on: ubuntu-latest
     strategy:
-      matrix:
+    max-parallel: 4  # Limit to 4 jobs running at once
+    matrix:
         file: [file1.txt,file2.txt, file3.txt, file4.txt, file5.txt, file6.txt, file7.txt, file8.txt, file9.txt, file10.txt, file11.txt, file12.txt, file13.txt ]  # Add all your file names here
 
     steps:
