@@ -7,7 +7,7 @@ require 'uri'
 agent = Mechanize.new
 agent.user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
 # Read URLs from the list.txt file
-urls = File.readlines('failed.txt').map(&:strip) # Read and strip whitespace
+urls = File.readlines('list.txt').map(&:strip) # Read and strip whitespace
 
 # Array to hold book data for JSON export
 books_data = []
